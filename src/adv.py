@@ -1,5 +1,6 @@
 from room import Room
-# adding new git branch
+from player import Player
+
 # Declare all the rooms
 
 room = {
@@ -49,3 +50,52 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+p_1 = Player(name="Liv")
+#My player class instantiates every player to start outside.
+
+print(room["outside"].name)
+print(room["outside"].description)
+
+input_01 = input("Choose direction: (n,e,s,w) ")
+
+if input_01 == "n":
+    p_1.current_room = "foyer"
+    print(room["foyer"].name)
+    print(room["foyer"].description)
+else:
+    print("You cannot move in this direction.")
+
+input_02 = input("Choose direction: (n,e,s,w) ")
+
+if input_02 == "n":
+    p_1.current_room = "overlook"
+    print(room["overlook"].name)
+    print(room["overlook"].description)
+elif input_02 == "e":
+    p_1.current_room = "narrow"
+    print(room["narrow"].name)
+    print(room["narrow"].description)
+else:
+    print("You cannot move in this direction.")
+
+if p_1.current_room == "overlook":
+    input_03 = input("Choose direction: (n,e,s,w) ")
+    if input_03 == "s":
+        p_1.current_room = "foyer"
+        print(room["foyer"].name)
+        print(room["foyer"].description)
+    else:
+        print("You cannot move in this direction.")
+elif p_1.current_room == "narrow":
+    input_04 = input("Choose direction: (n,e,s,w) ")
+    if input_04 == "w":
+        p_1.current_room = "foyer"
+        print(room["foyer"].name)
+        print(room["foyer"].description)
+    elif input_04 == "n":
+        p_1.current_room = "treasure"
+        print(room["treasure"].name)
+        print(room["treasure"].description)
+    else:
+        print("You cannot move in this direction.")
