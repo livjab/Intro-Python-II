@@ -55,71 +55,70 @@ room['treasure'].s_to = room['narrow']
 p_1 = Player(name="Liv")
 #My player class instantiates every player to start outside.
 
-# start!
-print(room["outside"].name)
-print(room["outside"].description)
-
-input_01 = input("Choose direction: (n,e,s,w) ")
-
-if input_01 == "n":
-    p_1.current_room = "foyer"
-    print(room["foyer"].name)
-    print(room["foyer"].description)
-elif input_01 == "q":
-    sys.exit("Qutting game")
-else:
-    print("You cannot move in this direction.")
-
-input_02 = input("Choose direction: (n,e,s,w) ")
-
-if input_02 == "n":
-    p_1.current_room = "overlook"
-    print(room["overlook"].name)
-    print(room["overlook"].description)
-elif input_02 == "e":
-    p_1.current_room = "narrow"
-    print(room["narrow"].name)
-    print(room["narrow"].description)
-elif input_02 == "q":
-    sys.exit("Qutting game")
-else:
-    print("You cannot move in this direction.")
-
-if p_1.current_room == "overlook":
-    input_03 = input("Choose direction: (n,e,s,w) ")
-    if input_03 == "s":
-        p_1.current_room = "foyer"
-        print(room["foyer"].name)
-        print(room["foyer"].description)
-    elif input_03 == "q":
-        sys.exit("Qutting game")
-    else:
-        print("You cannot move in this direction.")
-elif p_1.current_room == "narrow":
-    input_04 = input("Choose direction: (n,e,s,w) ")
-    if input_04 == "w":
-        p_1.current_room = "foyer"
-        print(room["foyer"].name)
-        print(room["foyer"].description)
-    elif input_04 == "n":
-        p_1.current_room = "treasure"
-        print(room["treasure"].name)
-        print(room["treasure"].description)
-    elif input_04 == "q":
-        sys.exit("Qutting game")
-    else:
-        print("You cannot move in this direction.")
-
-"""
-Alternative attempt
-
 # start! p_1.current_room == "outside"
 
-for i in range(0,5):
+for i in range(0,1000):
 
-print(room["outside"].name)
-print(room["outside"].description)
+    if p_1.current_room == "outside":
+        print(room["outside"].name)
+        print(room["outside"].description)
+        outside_input = input("Choose direction: (n,e,s,w) ")
+        if outside_input == "n":
+            p_1.current_room = "foyer"
+        elif outside_input == "q":
+            sys.exit("Qutting game")
+        else:
+            print("** You may only move north from here **")
 
-input_01 = input("Choose direction: (n,e,s,w) ")
+    elif p_1.current_room == "foyer":
+        print(room["foyer"].name)
+        print(room["foyer"].description)
+        foyer_input = input("Choose direction: (n,e,s,w) ")
+        if foyer_input == "n":
+            p_1.current_room = "overlook"
+        elif foyer_input == "e":
+            p_1.current_room = "narrow"
+        elif foyer_input == "s":
+            p_1.current_room = "outside"
+        elif foyer_input == "q":
+            sys.exit("Qutting game")
+        else:
+            print("** There is nothing to the west **")
 
-"""
+    elif p_1.current_room == "overlook":
+        print(room["overlook"].name)
+        print(room["overlook"].description)
+        overlook_input = input("Choose direction: (n,e,s,w) ")
+        if overlook_input == "s":
+            p_1.current_room = "foyer"
+        elif overlook_input == "q":
+            sys.exit("Qutting game")
+        else:
+            print("** You may only move south from here **")
+
+    elif p_1.current_room == "narrow":
+        print(room["narrow"].name)
+        print(room["narrow"].description)
+        narrow_input = input("Choose direction: (n,e,s,w) ")
+        if narrow_input == "w":
+            p_1.current_room = "foyer"
+        elif narrow_input == "n":
+            p_1.current_room = "treasure"
+        elif narrow_input == "q":
+            sys.exit("Qutting game")
+        else:
+            print("** You may only move west or north from here **")
+
+    elif p_1.current_room == "treasure":
+        print(room["treasure"].name)
+        print(room["treasure"].description)
+        treasure_input = input("Choose direction: (n,e,s,w) ")
+        if treasure_input == "s":
+            p_1.current_room = "narrow"
+        elif treasure_input == "q":
+            sys.exit("Qutting game")
+        else:
+            print("** You may only move south from here **")
+
+    else:
+        pass
