@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import sys
 
 # Declare all the rooms
 
@@ -54,6 +55,7 @@ room['treasure'].s_to = room['narrow']
 p_1 = Player(name="Liv")
 #My player class instantiates every player to start outside.
 
+# start!
 print(room["outside"].name)
 print(room["outside"].description)
 
@@ -63,6 +65,8 @@ if input_01 == "n":
     p_1.current_room = "foyer"
     print(room["foyer"].name)
     print(room["foyer"].description)
+elif input_01 == "q":
+    sys.exit("Qutting game")
 else:
     print("You cannot move in this direction.")
 
@@ -76,6 +80,8 @@ elif input_02 == "e":
     p_1.current_room = "narrow"
     print(room["narrow"].name)
     print(room["narrow"].description)
+elif input_02 == "q":
+    sys.exit("Qutting game")
 else:
     print("You cannot move in this direction.")
 
@@ -85,6 +91,8 @@ if p_1.current_room == "overlook":
         p_1.current_room = "foyer"
         print(room["foyer"].name)
         print(room["foyer"].description)
+    elif input_03 == "q":
+        sys.exit("Qutting game")
     else:
         print("You cannot move in this direction.")
 elif p_1.current_room == "narrow":
@@ -97,5 +105,21 @@ elif p_1.current_room == "narrow":
         p_1.current_room = "treasure"
         print(room["treasure"].name)
         print(room["treasure"].description)
+    elif input_04 == "q":
+        sys.exit("Qutting game")
     else:
         print("You cannot move in this direction.")
+
+"""
+Alternative attempt
+
+# start! p_1.current_room == "outside"
+
+for i in range(0,5):
+
+print(room["outside"].name)
+print(room["outside"].description)
+
+input_01 = input("Choose direction: (n,e,s,w) ")
+
+"""
