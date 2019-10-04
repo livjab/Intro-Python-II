@@ -1,3 +1,4 @@
+from item import Item
 from room import Room
 from player import Player
 import sys
@@ -6,7 +7,8 @@ import sys
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",
+                     ["egg", "can"]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -35,6 +37,26 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
+# Declare all the items
+
+item = {
+    'egg':  Item("Egg", """A small, round, white egg, possibly from a chicken.
+By the smell, it seems to be hardboiled."""),
+
+    'sock': Item("Sock", """An old, smelly, gym sock. While this sock was once
+white, it has now faded into a dingy gray color."""),
+
+    'can':  Item("Can", """A rusted beer can, the label of which you can no
+longer read."""),
+
+    'bag':  Item("Bag", """A crumpled plastic grocery bag, with yellow coloring
+that may have once been a smiley face."""),
+
+    'bic':  Item("Bic", """A Bic lighter, empty of lighter fuel, and spark wheel
+rusted to the point of complete inefficacy"""),
+}
+
 #
 # Main
 #
@@ -62,6 +84,7 @@ for i in range(0,1000):
     if p_1.current_room == "outside":
         print(room["outside"].name)
         print(room["outside"].description)
+        print(f"In this room are the following items: ", room["outside"].item_list)
         outside_input = input("Choose direction: (n,e,s,w) ")
         if outside_input == "n":
             p_1.current_room = "foyer"
