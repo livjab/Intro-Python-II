@@ -2,10 +2,10 @@
 # currently.
 
 class Player:
-    def __init__(self, name, current_room='outside'):
+    def __init__(self, name, current_room='outside', item_list=[]):
         self.name = name
         self.current_room = current_room
-        self.item_list = []
+        self.item_list = item_list
 
     def add_item(self, item):
         """Adds an item to this player. This occurs when a player picks up an
